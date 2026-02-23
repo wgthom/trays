@@ -1,0 +1,29 @@
+.admin-page {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.admin-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.admin-widget {
+    transition: all var(--transition-normal);
+}
+
+.admin-widget:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--brand-primary);
+}
+
+.text-brand-primary {
+    color: var(--brand-primary);
+}
+
+.mb-4 {
+    margin-bottom: 1rem;
+}

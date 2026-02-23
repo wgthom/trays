@@ -1,0 +1,150 @@
+.season-switcher {
+    position: relative;
+    z-index: 50;
+    /* Ensure dropdown appears above other content */
+}
+
+.season-switcher-button {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    padding: 0.5rem 1rem 0.5rem 0.5rem;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    text-align: left;
+}
+
+.season-switcher-button:hover {
+    border-color: var(--border-focus);
+    background-color: var(--hover-bg);
+}
+
+.season-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background-color: var(--accent-light);
+    color: var(--brand-primary);
+    border-radius: 50%;
+}
+
+.season-info-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.season-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--text-tertiary);
+}
+
+.season-name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.archive-badge {
+    background-color: var(--bg-secondary);
+    color: var(--text-secondary);
+    font-size: 0.65rem;
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.archive-badge.small {
+    font-size: 0.55rem;
+}
+
+.chevron-icon {
+    color: var(--text-tertiary);
+    transition: transform var(--transition-normal);
+}
+
+.chevron-icon.open {
+    transform: rotate(180deg);
+}
+
+/* Dropdown Menu */
+.season-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    min-width: 220px;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.dropdown-header {
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    font-weight: 600;
+    padding: 0.5rem 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.season-dropdown-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.625rem 0.75rem;
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: all var(--transition-fast);
+}
+
+.season-dropdown-item:hover {
+    background-color: var(--hover-bg);
+    color: var(--text-primary);
+}
+
+.season-dropdown-item.selected {
+    background-color: var(--accent-light);
+    color: var(--brand-primary);
+    font-weight: 600;
+}
+
+.active-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--brand-primary);
+    border-radius: 50%;
+}
+
+@media (max-width: 640px) {
+    .season-switcher-button {
+        padding: 0.375rem;
+    }
+
+    .season-info-text {
+        display: none;
+        /* Hide text on small mobile headers to save space */
+    }
+}

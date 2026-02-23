@@ -1,0 +1,346 @@
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.dashboard-main-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard-side-col {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Typography & Layout Utilities */
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row !important;
+}
+
+.text-brand-primary {
+    color: var(--brand-primary);
+}
+
+.mt-6 {
+    margin-top: 1.5rem;
+}
+
+.mb-6 {
+    margin-bottom: 1.5rem;
+}
+
+.mt-1 {
+    margin-top: 0.25rem;
+}
+
+.mt-4 {
+    margin-top: 1rem;
+}
+
+.p-4 {
+    padding: 1rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Links */
+.view-all-link {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--brand-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.view-all-link:hover {
+    color: var(--brand-secondary);
+}
+
+/* Compact Game List (Overrides/Extends Schedule styles) */
+.game-list-compact {
+    display: flex;
+    flex-direction: column;
+}
+
+.game-item-compact {
+    display: grid;
+    grid-template-columns: 120px 1fr 150px;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color var(--transition-fast);
+}
+
+.game-item-compact:last-child {
+    border-bottom: none;
+}
+
+.game-item-compact:hover {
+    background-color: var(--hover-bg);
+}
+
+.game-datetime-compact {
+    display: flex;
+    flex-direction: column;
+}
+
+.game-datetime-compact .date {
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--text-primary);
+}
+
+.game-datetime-compact .time,
+.game-datetime-compact .division {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.game-matchup-compact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.team-compact {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.team-compact.right {
+    justify-content: flex-end;
+    text-align: right;
+    gap: 0.75rem;
+}
+
+.team-compact.left {
+    justify-content: flex-start;
+    text-align: left;
+    gap: 0.75rem;
+}
+
+.team-compact.winner {
+    color: var(--text-primary);
+}
+
+
+/* Needed for specificity to override other colors if not winner */
+.result .team-compact:not(.winner) span:not(.score-badge) {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.vs-badge {
+    background-color: var(--bg-secondary);
+    color: var(--text-secondary);
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--radius-sm);
+}
+
+.vs-badge.subtle {
+    background: transparent;
+    font-size: 0.875rem;
+}
+
+.score-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.75rem;
+    height: 1.75rem;
+    background-color: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    font-family: var(--font-heading);
+    color: var(--text-primary);
+}
+
+.winner .score-badge {
+    background-color: var(--brand-primary);
+    color: white;
+}
+
+.game-location-compact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+}
+
+.game-location-compact .division {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--brand-secondary);
+}
+
+.game-location-compact .field {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+/* Compact Standings Table */
+.standings-table-compact {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.standings-table-compact th {
+    background-color: var(--hover-bg);
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.standings-table-compact td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.875rem;
+}
+
+.standings-table-compact tr:last-child td {
+    border-bottom: none;
+}
+
+.standings-table-compact .rank {
+    font-weight: 700;
+    color: var(--text-secondary);
+    width: 40px;
+}
+
+.standings-table-compact .team-name {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.standings-table-compact .points {
+    font-weight: 700;
+    color: var(--brand-primary);
+    text-align: left;
+}
+
+
+/* Announcements */
+.announcement-item {
+    padding: 1rem;
+    background-color: var(--hover-bg);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--brand-primary);
+}
+
+.announcement-item strong {
+    display: block;
+    color: var(--text-primary);
+}
+
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .game-item-compact {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    .hidden-mobile {
+        display: none !important;
+    }
+
+    .game-matchup-compact {
+        background-color: var(--hover-bg);
+        padding: 0.75rem;
+        border-radius: var(--radius-md);
+        margin-top: 0.25rem;
+    }
+}
+
+a.link {
+    color: var(--brand-primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a.link:hover {
+    text-decoration: underline;
+}
+
+/* Division Switcher Component */
+.division-switcher {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.division-switcher::-webkit-scrollbar {
+    display: none;
+    /* Chrome/Safari */
+}
+
+.div-btn {
+    padding: 0.5rem 1rem;
+    white-space: nowrap;
+    border-radius: var(--radius-full);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    transition: all var(--transition-fast);
+}
+
+.div-btn:hover {
+    border-color: var(--border-focus);
+    background-color: var(--hover-bg);
+}
+
+.div-btn.active {
+    background-color: var(--brand-primary);
+    color: white;
+    border-color: var(--brand-primary);
+}
+
+/* Grouping Headers */
+.matchday-header {
+    background-color: var(--bg-secondary);
+    padding: 0.4rem 1.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border-color);
+    border-top: 1px solid var(--border-color);
+}
+
+.matchday-header:first-child {
+    border-top: none;
+}
