@@ -92,11 +92,11 @@ export function Dashboard() {
                                                     </div>
                                                     <div className="game-matchup-compact">
                                                         <div className="team-compact right">
-                                                            <span>{game.homeTeam}</span>
+                                                            <Link to={`/team/${game.homeTeamId}`} className="team-name-link">{game.homeTeam}</Link>
                                                         </div>
                                                         <div className="vs-badge">VS</div>
                                                         <div className="team-compact left">
-                                                            <span>{game.awayTeam}</span>
+                                                            <Link to={`/team/${game.awayTeamId}`} className="team-name-link">{game.awayTeam}</Link>
                                                         </div>
                                                     </div>
                                                     <div className="game-location-compact hidden-mobile">
@@ -140,13 +140,13 @@ export function Dashboard() {
                                                     </div>
                                                     <div className="game-matchup-compact">
                                                         <div className={`team-compact right ${game.homeScore! > game.awayScore! ? 'winner' : ''}`}>
-                                                            <span>{game.homeTeam}</span>
+                                                            <Link to={`/team/${game.homeTeamId}`} className="team-name-link">{game.homeTeam}</Link>
                                                             <span className="score-badge">{game.homeScore}</span>
                                                         </div>
                                                         <div className="vs-badge subtle">-</div>
                                                         <div className={`team-compact left ${game.awayScore! > game.homeScore! ? 'winner' : ''}`}>
                                                             <span className="score-badge">{game.awayScore}</span>
-                                                            <span>{game.awayTeam}</span>
+                                                            <Link to={`/team/${game.awayTeamId}`} className="team-name-link">{game.awayTeam}</Link>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -182,7 +182,9 @@ export function Dashboard() {
                                         {topStandings.map(row => (
                                             <tr key={row.rank}>
                                                 <td className="rank">{row.rank}</td>
-                                                <td className="team-name">{row.team}</td>
+                                                <td className="team-name">
+                                                    <Link to={`/team/${row.teamId}`} className="team-name-link">{row.team}</Link>
+                                                </td>
                                                 <td className="points">{row.points}</td>
                                             </tr>
                                         ))}

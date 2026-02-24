@@ -5,6 +5,7 @@ import { ProtectedRoute } from './components/ProtectedRoute';
 import { Dashboard } from './pages/Dashboard';
 import { Teams } from './pages/Teams';
 import { Schedule } from './pages/Schedule';
+import { TeamDetail } from './pages/TeamDetail';
 import { Admin } from './pages/Admin';
 import { Login } from './pages/Login';
 import { Signup } from './pages/Signup';
@@ -36,6 +37,7 @@ function AppRoutes() {
       <Route path="/" element={<Layout />}>
         <Route index element={<Dashboard />} />
         <Route path="teams" element={<Teams />} />
+        <Route path="team/:teamId" element={<TeamDetail />} />
         <Route path="schedule" element={<Schedule />} />
         {/* Protected Routes */}
         <Route path="admin" element={<ProtectedRoute><Admin /></ProtectedRoute>} />

@@ -31,8 +31,10 @@ export type MockTeam = {
 export type MockGame = {
     id: string;
     division: string;
+    homeTeamId: string;
     homeTeam: string;
     homeColor: string;
+    awayTeamId: string;
     awayTeam: string;
     awayColor: string;
     date: string;
@@ -49,6 +51,7 @@ export type MockGame = {
 
 export type MockStanding = {
     rank: number;
+    teamId: string;
     team: string;
     played: number;
     won: number;
@@ -114,8 +117,10 @@ function generateSchedule(teams: MockTeam[]): MockGame[] {
                 games.push({
                     id: `g${gameCounter++}`,
                     division: div.name,
+                    homeTeamId: home.id,
                     homeTeam: home.name,
                     homeColor: home.colorPrimary,
+                    awayTeamId: away.id,
                     awayTeam: away.name,
                     awayColor: away.colorPrimary,
                     date: dateStr,
@@ -142,39 +147,40 @@ export function calculateStandings(games: MockGame[], divisionName: string): Moc
     const stats: Record<string, any> = {};
 
     divisionGames.forEach(game => {
-        if (!stats[game.homeTeam]) stats[game.homeTeam] = { played: 0, won: 0, drawn: 0, lost: 0, points: 0, gf: 0, ga: 0 };
-        if (!stats[game.awayTeam]) stats[game.awayTeam] = { played: 0, won: 0, drawn: 0, lost: 0, points: 0, gf: 0, ga: 0 };
+        if (!stats[game.homeTeamId]) stats[game.homeTeamId] = { teamName: game.homeTeam, played: 0, won: 0, drawn: 0, lost: 0, points: 0, gf: 0, ga: 0 };
+        if (!stats[game.awayTeamId]) stats[game.awayTeamId] = { teamName: game.awayTeam, played: 0, won: 0, drawn: 0, lost: 0, points: 0, gf: 0, ga: 0 };
 
-        stats[game.homeTeam].played++;
-        stats[game.awayTeam].played++;
+        stats[game.homeTeamId].played++;
+        stats[game.awayTeamId].played++;
 
-        stats[game.homeTeam].gf += game.homeScore!;
-        stats[game.homeTeam].ga += game.awayScore!;
-        stats[game.awayTeam].gf += game.awayScore!;
-        stats[game.awayTeam].ga += game.homeScore!;
+        stats[game.homeTeamId].gf += game.homeScore!;
+        stats[game.homeTeamId].ga += game.awayScore!;
+        stats[game.awayTeamId].gf += game.awayScore!;
+        stats[game.awayTeamId].ga += game.homeScore!;
 
         if (game.homeScore! > game.awayScore!) {
-            stats[game.homeTeam].won++;
-            stats[game.homeTeam].points += 3;
-            stats[game.awayTeam].lost++;
+            stats[game.homeTeamId].won++;
+            stats[game.homeTeamId].points += 3;
+            stats[game.awayTeamId].lost++;
         } else if (game.homeScore! < game.awayScore!) {
-            stats[game.awayTeam].won++;
-            stats[game.awayTeam].points += 3;
-            stats[game.homeTeam].lost++;
+            stats[game.awayTeamId].won++;
+            stats[game.awayTeamId].points += 3;
+            stats[game.homeTeamId].lost++;
         } else {
-            stats[game.homeTeam].drawn++;
-            stats[game.awayTeam].drawn++;
-            stats[game.homeTeam].points += 1;
-            stats[game.awayTeam].points += 1;
+            stats[game.homeTeamId].drawn++;
+            stats[game.awayTeamId].drawn++;
+            stats[game.homeTeamId].points += 1;
+            stats[game.awayTeamId].points += 1;
         }
     });
 
-    const standings = Object.keys(stats).map(teamName => {
-        const s = stats[teamName];
+    const standings = Object.keys(stats).map(teamId => {
+        const s = stats[teamId];
         const gd = s.gf - s.ga;
         return {
             rank: 0,
-            team: teamName,
+            teamId,
+            team: s.teamName,
             played: s.played,
             won: s.won,
             drawn: s.drawn,
